@@ -1,0 +1,165 @@
+#content{
+    position: relative;
+    background: rgba(0, 0, 0, 0.86);
+    text-align: center;
+    margin-top: 94px;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+  text-decoration: none; /* Bỏ gạch dưới */
+  color: inherit; /* Sử dụng màu chữ mặc định của phần tử cha */
+}
+
+#div_slider_sale{
+    background-image: url(../img/sale1.jpg);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 3px solid #FFFAFA;
+    border-top: none;
+    height: 550px;
+    background-position: center;
+    position: relative;
+}
+
+#logo_slider_sale{
+    background-image: url(../img/aaaa.png);
+    width: 400px;
+    position: absolute;
+    z-index: 1;
+    height: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: cover;
+    top: 70px;
+}
+
+#div_sale{
+    margin-top: 50px;
+    color: white;
+}
+
+#title_sale{
+    font-family: Roboto;
+    font-size: 35px;
+    font-weight: 500;
+}
+
+#sub_sale{
+    font-family: 'Inter';
+    font-size: 18px;
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+#line_sale{
+    border: 2px solid #FFFFFF;
+    width: 300px;
+    margin: 30px auto 0 auto;
+}
+
+
+#list_product_sale {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.product {
+  margin: 0 45px;
+  height: 404px;
+  width: 15%;
+  margin-top: 20px;
+}
+
+.img_product {
+  background-size: 100% 100%;
+  height: 350px;
+  border: 2px solid #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-repeat: no-repeat;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.infor_product {
+  width: 100%;
+  height: 55px;
+  background: rgba(217, 217, 217, 0.18);
+  border: 1px solid #FFFFFF;
+  border-top: none;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.name_product {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 550;
+  font-size: 15px;
+  line-height: 18px;
+  color: #FFFFFF;
+  margin: 2px 0px 0px 2px;
+  text-align: left;
+}
+
+.div_price {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.price {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #FD6F08;
+  margin-right: 5px;
+}
+
+.old_price {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-right: 2px;
+  text-decoration-line: line-through;
+}
+
+
+/*CSS phân trang*/
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+	padding-bottom: 50px;
+}
+
+.pagination a {
+	color: rgb(255, 255, 255);
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
