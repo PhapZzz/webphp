@@ -121,7 +121,12 @@ a:-webkit-any-link {
 	z-index: 2;
 	position: absolute !important;
 	top: 0px;
+	
 }
+
+/* #message{
+	display: none;
+} */
 
 #login_form{
 	display: flex;

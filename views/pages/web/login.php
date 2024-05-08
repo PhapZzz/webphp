@@ -1,7 +1,9 @@
+
+
 <div id="content">
     <div id="background_login">
 
-        <?php
+        <!-- <?php
         // Hiển thị thông báo nếu có
         if (isset($_GET['incorrectAccount'])) {
             echo '<div class="alert alert-danger" role="alert">Tên đăng nhập hoặc mật khẩu sai!</div>';
@@ -12,13 +14,13 @@
         }elseif (isset($_GET['registerSuccess'])) {
             echo '<div class="alert alert-info" role="alert">Tạo tài khoản thành công</div>';
         }
-        ?>
-        <div id="message" class="alert alert-danger" role="alert">//</div>';
+        ?> -->
+        <div id="message" class="alert alert-danger" role="alert" style="display: none;"></div>';
         <div id="login">
             <h2 id="title_login">Đăng nhập</h2>
             <h3 id="name_shop">Singed/Shop</h3>
 
-            <form id="login_form" action="http://localhost:8008/PHP/index.php?controller=login&action=loginAuthentication" method="post">
+            <form id="login_form" method="post">
                 <input id="phone_number" name="username" type="text" placeholder="Số điện thoại" required>
                 <input id="passwd" name="password" type="password" placeholder="Mật khẩu" required>
                 <button id="btn_login" type="submit">Đăng nhập</button>

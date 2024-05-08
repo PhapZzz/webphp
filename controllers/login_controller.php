@@ -23,10 +23,15 @@ class LoginController extends BaseController
           ),
           'js_files' => array(
               './assets/JavaScript/header.js',
+              'assets/JavaScript/xulyajax.js'
           ),
-        //   'err'=>"ok",
+        
       );
 }
+public function addData($key, $value)
+    {
+        $this->data[$key] = $value;
+    }
 
 public function login() {
     // Load view
@@ -38,7 +43,7 @@ public function login() {
 
 public function loginAuthentication()
 {   
-    
+    $loginController = new LoginController();
       //   'err'=>"ok",
   
     // Kiểm tra xem người dùng đã đăng nhập chưa
@@ -61,15 +66,18 @@ public function loginAuthentication()
                 $_SESSION['user_id'] = $user->getIdUser();
                 $_SESSION['role'] = $user->getRole()->getIdRole();
                 $_SESSION['user'] = serialize($user);
-                header("Location: http://localhost:8008/PHP/index.php?controller=pages&action=home");
+                echo"succes";
+                // header("Location: http://localhost:8008/PHP/index.php?controller=pages&action=home");
             } else {
                 // Mật khẩu không đúng, hiển thị thông báo lỗi
-                // echo "success";
-                header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login&incorrectAccount=true");
+                echo "err";
+                // header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login&incorrectAccount=true");
+            
             }
         } else {
             // Tên người dùng không tồn tại, hiển thị thông báo lỗi
-            header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login&incorrectAccount=true");
+            // header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login&incorrectAccount=true");
+            echo "err";
         }
 }
 

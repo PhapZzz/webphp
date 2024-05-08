@@ -23,6 +23,7 @@ function __construct() {
         ),
         'js_files' => array(
             './assets/JavaScript/header.js',
+            'assets/JavaScript/xulyajax.js'
         )
     );
 }
@@ -37,17 +38,20 @@ public function registerAccountUser()
 {   
     // Xử lý khi người dùng nhấn nút Đăng ký
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $phone = $_POST['phone_number'];
+    $phone = $_POST['phone'];
     $name = $_POST['name'];
     $password = $_POST['password'];
-    $confirm_password = $_POST['re_passwd'];
+    $confirm_password = $_POST['confirm_password'];
 
     // echo "Password: " . $password . "<br>";
-   
+    //kiem tra tk da ton tai hay chua
+    $user = login::getAccountUser($phone);
+    if (!$user) {
     //Kiểm tra xác nhận mật khẩu
     if ($password != $confirm_password) { 
         // Nếu xác nhận mật khẩu không trùng khớp, hiển thị thông báo lỗi và dừng lại
-        header("Location: http://localhost:8008/PHP/index.php?controller=register&action=register&passwordMismatch=true");
+        // header("Location: http://localhost:8008/PHP/index.php?controller=register&action=register&passwordMismatch=true");
+        echo "errcomfirm";
         return;
     }
         
@@ -56,13 +60,17 @@ public function registerAccountUser()
         
       if ($result) {
           // Nếu đăng ký thành công, chuyển hướng đến trang đăng nhập
-          header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login&registerSuccess=true");
-          exit;
+        //   header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login&registerSuccess=true");
+        echo "succes";
+        // header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login");
+        //   exit;
       } else {
           // Nếu có lỗi xảy ra trong quá trình đăng ký, hiển thị thông báo lỗi
-          header("Location: http://localhost:8008/PHP/index.php?controller=register&action=error");
-          return;
+        //   header("Location: http://localhost:8008/PHP/index.php?controller=register&action=error");
+        //   return;
       }
+    }
+    else {echo "haveuser";}
     }
 }
     
