@@ -55,7 +55,9 @@ public function loginAuthentication()
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $_POST['username'];
         $password = $_POST['password'];
-
+        $phonePattern = '/^0\d{9}$/';
+        if (preg_match($phonePattern, $username)) {
+            // echo "<p style='color:green;'>Số điện thoại hợp lệ!</p>";
         // Lấy thông tin người dùng từ CSDL
         $user = login::getAccountUser($username);
 
@@ -79,6 +81,10 @@ public function loginAuthentication()
             // header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login&incorrectAccount=true");
             echo "err";
         }
+    }
+    else{
+        echo "err_sdt";
+    }
 }
 
 }

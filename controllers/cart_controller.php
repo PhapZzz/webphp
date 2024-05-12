@@ -7,6 +7,7 @@ require_once('models/style.php');
 
 class CartController extends BaseController
 {
+  private $data;
   function __construct()
   {
     $this->folder = 'pages';

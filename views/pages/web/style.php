@@ -3,10 +3,11 @@
         <?php endforeach; ?>
         
         <!-- <?php if (isset($js_files)): ?> -->
-            <?php foreach ($data['js_files'] as $js_file): ?>
+            <!-- <?php foreach ($data['js_files'] as $js_file): ?>
                 <script src="<?= $js_file ?>"></script>
             <?php endforeach; ?>
-        <?php endif; ?>
+        <?php endif; ?> -->
+        <script src="assets/JavaScript/xulyajax.js"></script>
         <div id="content">
         <h1 id="title_style">Loại sản phẩm</h1>
         <h2 id="name_style">Áo thun</h2>
@@ -28,11 +29,12 @@
                 <?php endforeach; ?>
             </div>  
             <div class="pagination">
-                <a href="<?php echo ($currentPage > 1) ? 'http://localhost:8008/PHP/index.php?controller=style&action=style&page=' . ($currentPage - 1) : '#'; ?>">&laquo;</a>
+                <a id="<?php echo ($currentPage > 1) ? ($currentPage - 1) : $currentPage; ?>" href="#">&laquo;</a>
                 <?php for ($i = 1; $i <= $totalPage; $i++): ?>
-                    <a id="<?php echo $i; ?>" href="http://localhost:8008/PHP/index.php?controller=style&action=style&idStyle=<?php echo $idStyle; ?>&page=<?php echo $i; ?>" <?php if ($i == $currentPage) echo 'class="active"'; ?>><?php echo $i; ?></a>
+                    
+                    <a id="<?php echo $i;?>" href="#" <?php if ($i == $currentPage) echo 'class="active"'; ?>><?php echo $i; ?></a>
                 <?php endfor; ?>
-                <a href="<?php echo ($currentPage < $totalPage) ? 'http://localhost:8008/PHP/index.php?controller=style&action=style&page=' . ($currentPage + 1) : '#'; ?>">&raquo;</a>
+                <a id="<?php echo ($currentPage < $totalPage) ? ($currentPage + 1) : $currentPage; ?>" href="#">&raquo;</a>
             </div>
 
         

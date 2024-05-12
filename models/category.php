@@ -37,6 +37,16 @@ class category {
         }
         return $list;
     } 
+
+    public static function getNameCategorybyID($idcategory){
+        $db = DB::getInstance();
+        $sql = "SELECT nameCategory FROM category WHERE idCategory=:idCategory " ;
+        $req = $db->prepare($sql); // khác query ở chỗ là linh động tham số truyền vào
+        $req->execute(array('idCategory' => $idcategory));
+        $result = $req->fetchColumn(); // Lấy một cột từ kết quả truy vấn
+        return $result;
+    }
+
 }
 
 ?>

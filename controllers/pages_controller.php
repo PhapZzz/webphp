@@ -5,6 +5,7 @@ require_once('models/shortInforProduct.php');
 require_once('models/style.php');
 require_once('models/product.php');
 require_once('models/cart.php');
+require_once('models/category.php');
 
 class PagesController extends BaseController
 {
@@ -42,6 +43,7 @@ class PagesController extends BaseController
 
     $style = style::getStyleProduct(); // Lấy danh sách các style  
     $dataStyle = array('style' => $style);
+    
 
     $data = array(
         'css_files' => array(
@@ -59,7 +61,9 @@ class PagesController extends BaseController
         ),
         'dataBestSaleProduct' => $dataBestSaleProduct, // Thêm mảng $dataBestSaleProduct vào mảng $data
         'dataNewProduct' => $dataNewProduct,
-        'dataStyle' => $dataStyle // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
+        'dataStyle' => $dataStyle,
+        
+         // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
     );
      $this->render('home', $data,null);
   }
@@ -102,7 +106,7 @@ class PagesController extends BaseController
         ),
         'viewAllProduct' => $viewAllProduct,
         'totalPage' => $totalPage,
-        'action' => 'viewAllNewProduct',
+        'title' => 'SẢN PHẨM MỚI',
         'currentPage' => $page,
         'dataStyle' => $dataStyle // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
     );
@@ -147,7 +151,7 @@ class PagesController extends BaseController
         'viewAllProduct' => $viewAllProduct,
         'totalPage' => $totalPage,
         'currentPage' => $page,
-        'action' => 'viewAllBestSaleProduct',
+        'title' => 'TOP BÁN CHẠY',
         'dataStyle' => $dataStyle // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
     );
      $this->render('viewAllPage', $data,null);
@@ -160,14 +164,42 @@ class PagesController extends BaseController
       exit; // Kết thúc chương trình sau khi chuyển hướng
   }
 
-    $keysearch = isset($_GET['keysearch']) ? $_GET['keysearch'] : null;
+  $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  $limit = 8; // Số bài viết hiển thị trên mỗi trang
+  $offset = ($page - 1) * $limit;
 
-    $product = product::search($keysearch);
+  
+    
+    $keysearch = isset($_GET['keysearch']) ? $_GET['keysearch'] : null;
+    $category_id=isset($_GET['category']) ? $_GET['category'] : null;
+    $price_max=isset($_GET['price_max']) ? $_GET['price_max'] : 10000;
+    // switch($keysearch){
+    //   case "category_1":
+    //       $category_id="1";
+    //       break;
+    // }
+
+    $totalPage = product::countAfroduct($keysearch,$category_id,$price_max); // Thay đổi tên phương thức
+    $totalPage = ceil($totalPage / $limit);
+    // $limitproduct=[];
+    // for($i=$offset; $i<$end; $i++){
+    //   // echo $product[$i]->getNameProduct();
+    //   if($product[$i]){
+    //   $limitproduct[] = $product[$i];}
+      
+    // }
+    $product = product::search($keysearch,$category_id,$price_max,$limit,$offset);
     $viewAllProduct = array('viewAllProduct' => $product);
+
+
 
     $style = style::getStyleProduct(); // Lấy danh sách các style  
     $dataStyle = array('style' => $style);
 
+    $category=category::getCategory(); // lay danh sách danh mục
+    $datacategory = array('category' => $category);
+
+    $namecategory=category::getNameCategorybyID($category_id);
     $data = array(
         'css_files' => array(
             './assets/css/header.css',
@@ -180,12 +212,22 @@ class PagesController extends BaseController
         ),
         'js_files' => array(
             './assets/JavaScript/header.js',
+            './assets/JavaScript/xulyajax.js'
             // Thêm các đường dẫn đến các file JS cần import cho trang home
         ),
         'viewAllProduct' => $viewAllProduct,
-        'dataStyle' => $dataStyle // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
+        'totalPage' => $totalPage,
+        'currentPage' => $page,
+        'dataStyle' => $dataStyle,
+        'datacategory' => $datacategory,
+        'category_id' => $category_id,
+        'title'=>$namecategory
+        // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
     );
      $this->render('viewAllPage', $data,null);
+    // echo $namecategory;
+
+
   }
 
   public function error()

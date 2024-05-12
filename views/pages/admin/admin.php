@@ -1,4 +1,5 @@
-<div id="content">
+<script src="assets/JavaScript/admin.js"></script>
+<div id="content_1">
                 <div id="header-content">
                     <i class="fa-solid fa-bars"></i>
                     <ul class="tab-list-product">
@@ -19,16 +20,45 @@
                     <table class="product-table">
                         <thead>
                             <tr>
-                                <th class="id">ID</th>
-                                <th class="name">Tên</th>
-                                <th class="img">Hình ảnh</th>
-                                <th class="quantity">Số lượng</th>
-                                <th class="price">Giá</th>
-                                <th class="old-price">Giá cũ</th>
-                                <th class="style">style</th>
-                                <th class="type">Loại</th>
-                                <th class="describe">Mô tả</th>
-                                <th class="purchases">Lượt mua</th>
+                                <th class="id">ID
+                                <button name="idProduct_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="ididProduct-desc" class="btn btn-primary btn-sm">▼</button>
+                                </th>
+                                <th class="name">Tên
+                                <button name="nameProduct_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="nameProduct-desc" class="btn btn-primary btn-sm">▼</button>
+                                </th>
+                                <th class="img">Hình ảnh
+                                <!-- <button name="img_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="id-desc" class="btn btn-primary btn-sm">▼</button> -->
+                                </th>
+                                <th class="quantity">Số lượng
+                                <button name="quantity_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="quantity_desc" class="btn btn-primary btn-sm">▼</button>
+                                </th>
+                                <th class="price">Giá
+                                <button name="price_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="price_desc" class="btn btn-primary btn-sm">▼</button>
+                                </th>
+                                <th class="old-price">Giá cũ
+                                <button name="oldPrice_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="oldPrice_desc" class="btn btn-primary btn-sm">▼</button>
+                                </th>
+                                <th class="style">style
+                                <button name="idStyle_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="idStyle_desc" class="btn btn-primary btn-sm">▼</button>
+                                </th>
+                                <th class="type">Loại
+                                <button name="idCategory_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="idCategory_desc" class="btn btn-primary btn-sm">▼</button>
+                                </th>
+                                <th class="describe">Mô tả
+                                
+                                </th>
+                                <th class="purchases">Lượt mua
+                                <button name="purchases_asc" class="btn btn-primary btn-sm">▲</button>
+                                <button  name="purchases_desc" class="btn btn-primary btn-sm">▼</button>
+                                </th>
                                 <th class="date">Ngày tạo</th>
                                 <th class="edit"></th>
                             </tr>
@@ -43,8 +73,14 @@
                                     <td><a class="input-cell" type="text" ><?php echo $product->getQuantity(); ?></a></td>
                                     <td><a class="input-cell" type="text" ><?php echo $product->getPrice(); ?></a></td>
                                     <td><a class="input-cell" type="text" ><?php echo $product->getOldPrice(); ?></a></td>
-                                    <td><a class="input-cell" type="text" ><?php echo $product->getIdStyle(); ?></a></td>
-                                    <td><a class="input-cell" type="text" ><?php echo $product->getidCategory(); ?></a></td>
+                                    <td><a class="input-cell" type="text" ><?php
+                                    // require_once('models/style.php');
+                                    // $style = new style();
+                                    $style = style::getname_style($product->getIdStyle());
+                                    echo $style; ?></a></td>
+                                    <td><a class="input-cell" type="text" ><?php 
+                                    $category = category::getNameCategorybyID($product->getidCategory());
+                                    echo $category; ?></a></td>
                                     <td><textarea class="input-cell" class="describe_edit" name="describe"><?php echo $product->getDescribe(); ?></textarea></td>
                                     <td><a class="input-cell" type="text"><?php echo $product->getPurchase(); ?></a></td>
                                     <td><a class="input-cell" type="text"><?php echo $product->getCreateDate(); ?></a></td>
@@ -108,3 +144,5 @@
 	        });
 	    }
 	</script>
+
+   

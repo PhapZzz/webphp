@@ -26,40 +26,40 @@ openMenu.addEventListener('click', showMenu)
 btnClose.addEventListener('click', closeMenu)
 
 ////// bắt sự kiện thẻ lọc danh sách sản phẩm
-var listItems = document.getElementsByClassName('tab_list_menu');
-for (var i = 0; i < listItems.length; i++) {
-	listItems[i].addEventListener('click', function() {
-		var sublist = this.getElementsByClassName('list_clothes')[0];
-		if (sublist.style.display === 'block') {
-			sublist.style.display = 'none';
-			this.classList.remove('openlist');
-		} else {
-			sublist.style.display = 'block';
-			this.classList.add('openlist');
-			var otherSublists = document.getElementsByClassName('list_clothes');
-			for (var j = 0; j < otherSublists.length; j++) {
-				if (otherSublists[j] !== sublist) {
-					otherSublists[j].style.display = 'none';
-					otherSublists[j].parentNode.classList.remove('openlist');
-				}
-			}
-		}
-	});
-	// Ngăn chặn sự kiện lan ra đến thẻ cha
-	listItems[i].getElementsByClassName('list_clothes')[0].addEventListener('click', function(event) {
-		event.stopPropagation();
-	});
-}
+// var listItems = document.getElementsByClassName('tab_list_menu');
+// for (var i = 0; i < listItems.length; i++) {
+// 	listItems[i].addEventListener('click', function() {
+// 		var sublist = this.getElementsByClassName('list_clothes')[0];
+// 		if (sublist.style.display === 'block') {
+// 			sublist.style.display = 'none';
+// 			this.classList.remove('openlist');
+// 		} else {
+// 			sublist.style.display = 'block';
+// 			this.classList.add('openlist');
+// 			var otherSublists = document.getElementsByClassName('list_clothes');
+// 			for (var j = 0; j < otherSublists.length; j++) {
+// 				if (otherSublists[j] !== sublist) {
+// 					otherSublists[j].style.display = 'none';
+// 					otherSublists[j].parentNode.classList.remove('openlist');
+// 				}
+// 			}
+// 		}
+// 	});
+// 	// Ngăn chặn sự kiện lan ra đến thẻ cha
+// 	listItems[i].getElementsByClassName('list_clothes')[0].addEventListener('click', function(event) {
+// 		event.stopPropagation();
+// 	});
+// }
 
 
-//// Event thanh price ( tab menu ) 
-var slider = document.getElementById('range');
-var output = document.getElementById('value_price')
+// Event thanh price ( tab menu ) 
+// var slider = document.getElementById('range1');
+// var output = document.getElementById('value_price1');
 
-output.innerHTML = slider.value
-slider.oninput = function() {
-	output.innerHTML = "0 - " + this.value + ".000 đ"
-}
+// output.innerHTML = slider.value;  
+// slider.oninput = function() {
+// 	output.innerHTML = "0 - " + this.value + ".000 đ"
+// }
 
 
 //////////////////////////////////////////////////////// Event Search /////////////////////////////////////////////

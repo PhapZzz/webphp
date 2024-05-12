@@ -191,6 +191,31 @@ class product {
         }
         return $list;
     }
+
+    public static function getODERAllProduct($title, $oder){
+        
+        $list = [];
+        $db = DB::getInstance();
+        $sql = " SELECT idProduct,nameProduct,quantity,price,oldPrice,`describe`,idStyle,`image`,purchases,idCategory, `CreatedDate`  FROM product ORDER BY $title $oder ";
+        $req = $db->query($sql);
+    
+        foreach ($req->fetchAll() as $item) {
+            $list[] = new product(
+                $item['idProduct'],
+                $item['nameProduct'],
+                $item['quantity'],
+                $item['price'],
+                $item['oldPrice'],
+                $item['describe'],
+                $item['idStyle'],
+                $item['image'],
+                $item['purchases'],
+                $item['idCategory'],
+                $item['CreatedDate']
+            );
+        }
+        return $list;
+    }
 	
     public static function findByIdProduct($idProduct){
         $db = DB::getInstance();
@@ -218,11 +243,18 @@ class product {
         }
     }   
     
-    public static function search($keySearch){
+    public static function search($keySearch,$idcaregory,$price_max,$limit,$offset){
         $db = DB::getInstance();
-        $sql = "SELECT * FROM Product WHERE nameProduct LIKE ? ";
-        $stmt = $db->prepare($sql);
-        $stmt->execute(["%$keySearch%"]);
+        if ($idcaregory) {
+            $sql = "SELECT * FROM Product WHERE nameProduct LIKE ? AND idCategory = ? AND price BETWEEN 0 AND $price_max LIMIT $limit OFFSET $offset";
+            $stmt = $db->prepare($sql);
+            $stmt->execute(["%$keySearch%", $idcaregory]);
+            // $stmt->execute(array('price_max' => $price_max));
+        } else {
+            $sql = "SELECT * FROM Product WHERE nameProduct LIKE ? AND price BETWEEN 0 AND $price_max LIMIT $limit OFFSET $offset";
+            $stmt = $db->prepare($sql);
+            $stmt->execute(["%$keySearch%"]);
+        }
         $items = $stmt->fetchAll();
     
         $result = [];
@@ -243,6 +275,24 @@ class product {
             $result[] = $product;
         }
         return $result;
+    }
+
+    public static function countAfroduct($keySearch,$idcategory,$price_max)
+    {
+        $db = DB::getInstance();
+        if ($idcategory) {
+            $sql = "SELECT COUNT(*) FROM Product WHERE nameProduct LIKE ? AND idCategory=? AND price BETWEEN 0 AND $price_max";
+            $stmt = $db->prepare($sql);
+            $stmt->execute(["%$keySearch%", $idcategory]);
+            
+        } else {
+            $sql = "SELECT COUNT(*) FROM Product WHERE nameProduct LIKE ? AND price BETWEEN 0 AND $price_max";
+            $stmt = $db->prepare($sql);
+            $stmt->execute(["%$keySearch%"]);
+        }
+        
+        $count = $stmt->fetchColumn();
+        return $count;
     }
     
 }

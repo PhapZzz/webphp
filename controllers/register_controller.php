@@ -42,7 +42,8 @@ public function registerAccountUser()
     $name = $_POST['name'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-
+    $phonePattern = '/^0\d{9}$/';
+    if (preg_match($phonePattern, $phone)) {  
     // echo "Password: " . $password . "<br>";
     //kiem tra tk da ton tai hay chua
     $user = login::getAccountUser($phone);
@@ -72,6 +73,8 @@ public function registerAccountUser()
     }
     else {echo "haveuser";}
     }
+    else{echo "err_sdt";}
+}
 }
     
 public function error()

@@ -10,11 +10,11 @@
                 <link rel="stylesheet" href="<?= $css_file ?>">
         <?php endforeach; ?>
 
-        <?php if (isset($js_files)): ?>
+        <!-- <?php if (isset($js_files)): ?>
             <?php foreach ($data['js_files'] as $js_file): ?>
                 <script src="<?= $js_file ?>"></script>
             <?php endforeach; ?>
-        <?php endif; ?>
+        <?php endif; ?> -->
     </head>
 
     <body>
@@ -54,7 +54,7 @@
             </div>
             
             <?= @$content ?>
-
+                
         </div>
             <footer>
                 <h1 id="link-email"><i class="fa-solid fa-envelope"></i>Liên hệ email : huynhminhquan07072002@gmail.com</h1>

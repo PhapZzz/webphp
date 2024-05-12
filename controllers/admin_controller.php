@@ -27,11 +27,15 @@ class AdminController extends BaseController
           './assets/css/sweetalert2.min.css',
           './assets/icon/themify-icons/themify-icons.css',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css',
-          'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css'
+          'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css',
+          
+
       ),
       'js_files' => array(
           './assets/JavaScript/sweetalert2.min.js',
-          'https://code.jquery.com/jquery-3.6.0.min.js',   
+          'https://code.jquery.com/jquery-3.6.0.min.js',
+          'assets/JavaScript/admin.js'
+
       ));
   }
   
@@ -42,13 +46,41 @@ class AdminController extends BaseController
       exit; 
     }
 
+    if(isset($_GET["title"]) && isset($_GET["oder"])){
+      $title = $_GET["title"];
+      $oder = $_GET["oder"];
+      // if($title == "idStyle"){$title = style::getname_style()}
+      
+      $product = product::getODERAllProduct($title,$oder);
+      $dataAllProduct = array('product' => $product);
+      $layout = 'admin'; // Đặt layout là 'admin'
+      $this->data = array_merge($this->data, array('dataAllProduct'=>$dataAllProduct));
+      $this->render('admin', $this->data,$layout); 
+      // echo $dataAllProduct;
+      // echo $title;
+      // echo $oder;
+
+
+    }
+
+    else{
+
     $product = product::getAllProduct();
     $dataAllProduct = array('product' => $product);
     
     $layout = 'admin'; // Đặt layout là 'admin'
     $this->data = array_merge($this->data, array('dataAllProduct'=>$dataAllProduct));
     $this->render('admin', $this->data,$layout); 
-  }
+    }
+    
+}
+  
+
+
+
+
+
+
 
   public function update()
   {   
@@ -72,7 +104,7 @@ class AdminController extends BaseController
     $layout = 'admin';
     $this->render('edit', $this->data , $layout); 
   }
-
+  
 public function add()
 {   
     if (!isset($_SESSION['user_id']) && $_SESSION['role']->getIdRole() == 2) {

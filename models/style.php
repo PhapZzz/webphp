@@ -8,6 +8,10 @@ class style {
         $this->idStyle = $idStyle;
         $this->nameStyle = $nameStyle;
     }
+
+    public function style() {
+        
+    }
     public static function getID($idStyle){
         return $idStyle;
     }
@@ -39,6 +43,26 @@ class style {
     
         return $list;
     } 
+
+    public static function getname_style($idStyle) {
+        $db = DB::getInstance();
+        $sql = "SELECT nameStyle FROM style WHERE idStyle=:idStyle " ;
+        $req = $db->prepare($sql); // khác query ở chỗ là linh động tham số truyền vào
+        $req->execute(array('idStyle' => $idStyle));
+        $result = $req->fetchColumn(); // Lấy một cột từ kết quả truy vấn
+        return $result;
+        
+    }
+
+    public static function getid_style($nameStyle) {
+        $db = DB::getInstance();
+        $sql = "SELECT idStyle FROM style WHERE nameStyle=:nameStyle " ;
+        $req = $db->prepare($sql); // khác query ở chỗ là linh động tham số truyền vào
+        $req->execute(array('nameStyle' => $nameStyle));
+        $result = $req->fetchColumn(); // Lấy một cột từ kết quả truy vấn
+        return $result;
+        
+    }
 
     public static function getProductStyleAndPaginated($idStyle,$limit, $offset){
         $list = [];

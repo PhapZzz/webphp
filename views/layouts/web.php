@@ -18,7 +18,7 @@
        -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="./assets/css/footer.css"></script>
+        <!-- <script src="./assets/css/footer.css"></script> -->
 <!-- <script>
     var href = location.href.split("PHP/");
         // var pages = href[1];
@@ -122,7 +122,46 @@ function loadJS(filename) {
 
 
 </script> -->
+<script>
+    $(document).ready(function(){
+    $(".tab_list_menu").click(function(event){
+        // alert("hh");
+        var category =$(this).attr('id');
+        switch(category){
+            case "category_1" :
+                window.location.href = 'http://localhost:8008/PHP/index.php?controller=pages&action=search&category=1';
+                break;
+            case "title_trousers" :    
+                window.location.href = 'http://localhost:8008/PHP/index.php?controller=pages&action=search&category=2';
+                break;
+            case "title_accessories" :    
+                window.location.href = 'http://localhost:8008/PHP/index.php?controller=pages&action=search&category=3';
+                break;
+        }
+        // if(category=="category_1"){ window.location.href = 'http://localhost:8008/PHP/index.php?controller=pages&action=search&category=1';}
+        // performSearch();
+        // event.preventDefault();
+        // var category =$(this).attr('id');
+        // console.log(category);
+//         $.ajax({
+//     type: 'GET',
+//     url: 'http://localhost:8008/PHP/index.php?controller=pages&action=search&keysearch="+ searchInput.value+"&page=1', 
+//     data: {category: category},
+//     success: function(response) {
+//        console.log(response);
+       
+//     //    window.location.href = 'http://localhost:8008/PHP/index.php?controller=pages&action=search';
+//        $("#content_1").html(response); 
+       
+//     }
+//   });
+    });
+});
 
+
+
+
+</script>
     </head>
 
     <body>
@@ -143,7 +182,8 @@ function loadJS(filename) {
                             
                         </li>
                         <li> <a href="http://localhost:8008/PHP/index.php?controller=sale&action=sale&page=1">KHUYẾN MÃI</a></li>
-                        <li> <a>LIÊN HỆ</a></li>
+                        <li>    <a href="http://localhost:8008/PHP/index.php?controller=pages&action=search&keysearch=&page=1">SẢN PHẨM</a></li>
+                        <!-- <li> <a>LIÊN HỆ</a></li> -->
                         </ul>   
                         <div class="search-container">
                             <input class="search-box" placeholder="Tìm kiếm ..">
@@ -162,7 +202,7 @@ function loadJS(filename) {
                                         }
                                         echo '<li><a href="http://localhost:8008/PHP/index.php?controller=profile&action=profile">Thông tin</a></li>';
                                         echo '<li><a href="http://localhost:8008/PHP/index.php?controller=login&action=logout">Đơn hàng của tôi</a></li>';
-                                        echo '<li><a href="http://localhost:8008/PHP/index.php?controller=login&action=logout">Giỏ hàng</a></li>';
+                                        echo '<li><a href="http://localhost:8008/PHP/index.php?controller=cart&action=cart">Giỏ hàng</a></li>';
                                         echo '<li><a href="http://localhost:8008/PHP/index.php?controller=login&action=logout">Đăng xuất</a></li>';
                                     } else {
                                         // Nếu chưa đăng nhập, hiển thị liên kết đến trang đăng nhập
@@ -184,8 +224,15 @@ function loadJS(filename) {
                         <i class="fa-solid fa-circle-xmark close"></i>
                         <h1 id="title_menu">Danh mục sản phẩm </h1>
                         <ul id="content_menu">
-                            <li id="title_clothes" class="tab_list_menu"> <a>Áo</a> 
-                                <i class="ti-angle-down"></i>
+                            <li>
+                            <!-- <div class="search-container-menu">
+                            <input class="search-box" placeholder="Tìm kiếm ..">
+                            <i class="fa-solid fa-magnifying-glass icon_function"></i>
+                        </div> -->
+                 
+                            </li>
+                            <li id="category_1" class="tab_list_menu"> <a>Áo</a> 
+                                <!-- <i class="ti-angle-down"></i>
                                 <ul class="list_clothes">
                                     <li ><a>Áo Thun</a></li>
                                     <li ><a>Áo Sơ mi</a></li>
@@ -193,11 +240,11 @@ function loadJS(filename) {
                                     <li ><a>Áo Khoác</a></li>
                                     <li ><a>Áo Blazer</a></li>
                                     <li ><a>Áo Hoodie</a></li>
-                                </ul>
+                                </ul> -->
                             </li>
                             <li id="title_trousers" class="tab_list_menu"><a>Quần</a>
-                                <i class="ti-angle-down"></i>
-                                <ul class="list_clothes">
+                                <!-- <i class="ti-angle-down"></i> -->
+                                <!-- <ul class="list_clothes">
                                     <li ><a>Quần Jean</a></li>
                                     <li ><a>Quần Tây</a></li>
                                     <li ><a>Quần Jogger</a></li>
@@ -205,22 +252,22 @@ function loadJS(filename) {
                                     <li ><a>Quần Baggy</a></li>
                                     <li ><a>Quần Thun</a></li>
                                     <li ><a>Quần Short</a></li>
-                                </ul>
+                                </ul> -->
                             </li>
                             <li id="title_accessories" class="tab_list_menu"><a>Phụ kiện</a>
-                                <i class="ti-angle-down"></i>
+                                <!-- <i class="ti-angle-down"></i>
                                 <ul class="list_clothes">
                                     <li ><a>Nón</a></li>
                                     <li ><a>Kính</a></li>
                                     <li ><a>Cà vạt</a></li>
                                     <li ><a>Thắt lưng</a></li>
-                                </ul>
+                                </ul> -->
                             </li>
                         </ul>
-                        <div class="range_slider_div">
+                        <!-- <div class="range_slider_div">
                              <h3 id="title_price">Khoảng giá: <span id="value_price"></span></h3>
                              <input type="range" min="0" max="1000" value="0" class="slider_range" id="range">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -297,6 +344,8 @@ function loadJS(filename) {
         function performSearch() {
             window.location.assign("http://localhost:8008/PHP/index.php?controller=pages&action=search&keysearch="+ searchInput.value+"&page=1");
         }
+
+        
 	</script>
     
 
